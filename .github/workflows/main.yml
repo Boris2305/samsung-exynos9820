@@ -26,15 +26,17 @@ jobs:
     - name: Kernel Configure
       run: |
         ./build config           \
-                model=G973F      \
-                name=CRUEL-V3.1  \
+                model=G975F      \
+                name=CRUEL-V3.2  \
                 +magisk          \
+                magisk+canary    \
+                bfq              \
                 +nohardening     \
                 +ttl             \
                 +wireguard       \
                 +cifs            \
                 +boeffla_wl_blocker
-    - name: Kernel Build
+    - name: Cruel Kernel 3.2
       run: ./build :build
     - name: Create boot.img
       run: ./build :mkimg
@@ -43,7 +45,7 @@ jobs:
     - name: Upload Kernel
       uses: actions/upload-artifact@v1
       with:
-        name: CruelKernel
+        name: CruelKernel 3.2
         path: boot.img
     - name: Upload Kernel Info
       uses: actions/upload-artifact@v1
